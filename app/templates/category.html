@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro%}
+
+<!-- content block -->
+{% block content %}
+<div class='container'>
+    <div class='row'>
+        <h4 class="text-center" style="font-weight:bold; margin-bottom:30px;">
+            {{category.name|upper}}
+        </h4>
+        <div  class="text-center" style="margin-bottom:30px;">
+            <a href="/category/new-pitch/{{category.id}}"><button type="button" class="btn btn-info">Make a Pitch</button></a>
+        </div>
+    </div>
+</div>
+{% if pitches %}
+    <div class = "">
+        {{ macro.displayPitches(pitches)}}
+    </div>
+{%else%}
+    <div class= "">
+        <p>Category empty, Come back later</p>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+<!-- Displaying categories macro  -->
+{% macro displayCategoryList(category_list) %}
+
+    {% for category in category_list %}
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-6 category-card">
+            <div>
+                <a href="{{url_for('.category',id=category.id)}}">
+                    <h3>{{category.name|truncate(20)}}</h3>
+                </a>
+            </div>
+        </div>
+    {% endfor %} 
+{% endmacro %}
+
+<!-- Displaying pitches macro -->
+{% macro displayPitches(pitches_list) %}
+    {% for pitches in pitches_list %}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pitches-card" style=" margin:15px; width:250px; font-size:16px; background:#5BC0DE; border-radius:10px;">
+        <h5 class='text-center'>{{pitches.name|upper}}</h5></a>
+        <p>{{pitches.gist}}</p>
+        <hr>
+        <h4 ><span><a style='font-size:14px; font-weight:bold;color:white;' href=" {{url_for('.pitch_comment',id=pitches.id)}}">View Comments</a></span></h4>
+        <a href=" {{url_for('.add_comment',id=pitches.id)}}"><h4 style='font-size:14px; font-weight:bold; color:white;'>Add Comment</h4></a>
+    </div>
+    {% endfor %}
+{% endmacro %}
+
+<!--Displaying a pitch with comments-->
+{% macro displayPitchWithComment(comment) %}
+    {% for comment in comment %}
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pitchComment-card">
+            <p>{{comment.remark}}</p>
+            <p style="font-size:12px;">{{comment.time_stamp.strftime('%Y/%m/%d @ %r') }}</p>
+        </div>
+    {% endfor %}
+{% endmacro %}
